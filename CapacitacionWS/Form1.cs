@@ -749,85 +749,9 @@ namespace CapacitacionWS
 
         }
 
+        private void Resultados_Enter(object sender, EventArgs e)
+        {
 
-        // private void button8_Click(object sender, EventArgs e)
-        // {
-        //     try
-        //     {
-        //         ePower.Column[] Columnas = null;
-        //         ePower.DocInst[] Docs = null;
-        //         ePower.Field[] campos = null;
-        //         ePower.QueryInst Results = null;
-        //         //  a. Crear el conditionTree para obtener el docId con dicho numero de operacion
-        //         string xml = createEqual(appid.ToString(), tipoDocumento.ToString(), "1315", "1");//cambiar el valor porque el que se este utilizando 
-        //         gsi.tree.Builder builder = new gsi.tree.Builder();
-        //         gsi.tree.eTree condTree = builder.createTree(xml);
-        //         ePower.eTree tree = (ePower.eTree)convert(condTree);
-        //         //  b. Ejecutar la consulta
-        //         consulta = int.Parse(dtgConsultas.CurrentCell.Value.ToString());
-        //         //toma la consulta default de epower como base.
-        //         Results = conexion.doExecuteQuery(idconection, appid, tipoDocumento, consulta, -1, null, tree, null);
-        //         Columnas = Results.Column;
-        //         Docs = Results.DocInst;
-        //         dtgResultados.ColumnCount = (Columnas.Count() + 1);
-        //         dtgResultados.ColumnHeadersVisible = true;
-
-
-
-        //         dtgResultados.Columns[0].Name = "DocId";
-        //         for (int i = 0; i < Columnas.Count(); i++)
-        //         {
-        //             dtgResultados.Columns[i + 1].Name = Columnas[i].Name;
-        //         }
-        //         dtgResultados.Rows.Clear();
-        //         for (int i = 0; i < Docs.Length; i++)
-        //         {
-        //             campos = Docs[i].Field;
-        //             DataGridViewRow dt = new DataGridViewRow();
-        //             dt.CreateCells(dtgResultados);
-        //             dt.Cells[0].Value = Docs[i].DocId;
-        //             for (int j = 0; j < Columnas.Count(); j++)
-        //             {
-        //                 dt.Cells[j + 1].Value = campos[j].Value;
-        //             }
-        //             dtgResultados.Rows.Insert(i, dt);
-        //         }
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         MessageBox.Show("Imposible ejecutar la consulta  " + ex.ToString(), "Error",
-        //             MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-
-
-        //     }
-        // }
-
-        //private string createEqual(string app, string docType, string field, string valuee)
-        // {
-        //     string xml = "<Equal><Fields>" + app + "." + docType + "." + field + "</Fields>";
-        //     xml += "<Values>" + valuee + "</Values></Equal>";
-        //     return xml;
-        // }
-
-        // private ePower.eTree convert(gsi.tree.eTree t)
-        // {
-        //     ePower.eTree tree = new ePower.eTree();
-        //     tree.data = t.getData();
-        //     tree.vt = t.getVT();
-        //     tree.ek = t.getEK();
-        //     tree.l = t.getL();
-        //     if (t.getChild(1) != null)
-        //         tree.child1 = convert(t.getChild(1));
-        //     if (t.getChild(2) != null)
-        //         tree.child2 = convert(t.getChild(2));
-        //     if (t.getChild(3) != null)
-        //         tree.child3 = convert(t.getChild(3));
-        //     if (t.getChild(4) != null)
-        //         tree.child4 = convert(t.getChild(4));
-        //     return tree;
-        // }
-
-
+        }
     }
 }

@@ -28,6 +28,7 @@ namespace CapacitacionWS
     
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.txtUser = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
@@ -49,39 +50,41 @@ namespace CapacitacionWS
             this.NombreConsulta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DescConsulta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.dtgResultados = new System.Windows.Forms.DataGridView();
-            this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.btnAtras = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.btnSiguiente = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.Resultados = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgAplicaciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgTipoDocumental)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgConsultas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgResultados)).BeginInit();
             this.Resultados.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtUser
             // 
-            this.txtUser.Location = new System.Drawing.Point(53, 12);
+            this.txtUser.Location = new System.Drawing.Point(49, 22);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(100, 20);
+            this.txtUser.Size = new System.Drawing.Size(75, 20);
             this.txtUser.TabIndex = 0;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(250, 12);
+            this.txtPassword.Location = new System.Drawing.Point(226, 22);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(100, 20);
+            this.txtPassword.Size = new System.Drawing.Size(75, 20);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(53, 38);
+            this.btnLogin.Location = new System.Drawing.Point(49, 48);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 2;
@@ -92,7 +95,7 @@ namespace CapacitacionWS
             // Label1
             // 
             this.Label1.AutoSize = true;
-            this.Label1.Location = new System.Drawing.Point(4, 15);
+            this.Label1.Location = new System.Drawing.Point(0, 25);
             this.Label1.Name = "Label1";
             this.Label1.Size = new System.Drawing.Size(43, 13);
             this.Label1.TabIndex = 3;
@@ -102,7 +105,7 @@ namespace CapacitacionWS
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(177, 15);
+            this.label2.Location = new System.Drawing.Point(153, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 4;
@@ -110,7 +113,7 @@ namespace CapacitacionWS
             // 
             // btnLogout
             // 
-            this.btnLogout.Location = new System.Drawing.Point(250, 38);
+            this.btnLogout.Location = new System.Drawing.Point(226, 48);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(75, 23);
             this.btnLogout.TabIndex = 5;
@@ -125,7 +128,7 @@ namespace CapacitacionWS
             this.Identificador,
             this.Nombre,
             this.Descripcion});
-            this.dtgAplicaciones.Location = new System.Drawing.Point(7, 82);
+            this.dtgAplicaciones.Location = new System.Drawing.Point(7, 134);
             this.dtgAplicaciones.Name = "dtgAplicaciones";
             this.dtgAplicaciones.Size = new System.Drawing.Size(343, 115);
             this.dtgAplicaciones.TabIndex = 6;
@@ -147,7 +150,7 @@ namespace CapacitacionWS
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(356, 140);
+            this.button1.Location = new System.Drawing.Point(356, 192);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(112, 23);
             this.button1.TabIndex = 7;
@@ -162,7 +165,7 @@ namespace CapacitacionWS
             this.IdTipoDocumental,
             this.NombreTipoDocumental,
             this.DescTipoDocumental});
-            this.dtgTipoDocumental.Location = new System.Drawing.Point(7, 221);
+            this.dtgTipoDocumental.Location = new System.Drawing.Point(7, 280);
             this.dtgTipoDocumental.Name = "dtgTipoDocumental";
             this.dtgTipoDocumental.Size = new System.Drawing.Size(343, 162);
             this.dtgTipoDocumental.TabIndex = 8;
@@ -184,7 +187,7 @@ namespace CapacitacionWS
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(356, 269);
+            this.button2.Location = new System.Drawing.Point(356, 328);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(144, 23);
             this.button2.TabIndex = 9;
@@ -199,7 +202,7 @@ namespace CapacitacionWS
             this.IdConsulta,
             this.NombreConsulta,
             this.DescConsulta});
-            this.dtgConsultas.Location = new System.Drawing.Point(7, 401);
+            this.dtgConsultas.Location = new System.Drawing.Point(7, 469);
             this.dtgConsultas.Name = "dtgConsultas";
             this.dtgConsultas.Size = new System.Drawing.Size(343, 168);
             this.dtgConsultas.TabIndex = 10;
@@ -221,23 +224,13 @@ namespace CapacitacionWS
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(356, 481);
+            this.button3.Location = new System.Drawing.Point(356, 549);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(95, 23);
             this.button3.TabIndex = 11;
             this.button3.Text = "Listar Consultas";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(574, 34);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(99, 23);
-            this.button4.TabIndex = 12;
-            this.button4.Text = "Ejecutar consulta";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // dtgResultados
             // 
@@ -247,16 +240,6 @@ namespace CapacitacionWS
             this.dtgResultados.Size = new System.Drawing.Size(531, 397);
             this.dtgResultados.TabIndex = 13;
             this.dtgResultados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgResultados_CellContentClick);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(574, 63);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(99, 23);
-            this.button5.TabIndex = 14;
-            this.button5.Text = "Extraer Imagen";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
@@ -278,6 +261,16 @@ namespace CapacitacionWS
             this.btnAtras.UseVisualStyleBackColor = true;
             this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(574, 34);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(99, 23);
+            this.button4.TabIndex = 12;
+            this.button4.Text = "Ejecutar consulta";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // btnSiguiente
             // 
             this.btnSiguiente.Location = new System.Drawing.Point(493, 446);
@@ -287,6 +280,16 @@ namespace CapacitacionWS
             this.btnSiguiente.Text = "Siguiente";
             this.btnSiguiente.UseVisualStyleBackColor = true;
             this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(574, 63);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(99, 23);
+            this.button5.TabIndex = 14;
+            this.button5.Text = "Extraer Imagen";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Resultados
             // 
@@ -302,12 +305,29 @@ namespace CapacitacionWS
             this.Resultados.TabIndex = 18;
             this.Resultados.TabStop = false;
             this.Resultados.Text = "Resultados";
+            this.Resultados.Enter += new System.EventHandler(this.Resultados_Enter);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnLogout);
+            this.groupBox1.Controls.Add(this.txtUser);
+            this.groupBox1.Controls.Add(this.txtPassword);
+            this.groupBox1.Controls.Add(this.btnLogin);
+            this.groupBox1.Controls.Add(this.Label1);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(338, 98);
+            this.groupBox1.TabIndex = 19;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Login";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1259, 572);
+            this.ClientSize = new System.Drawing.Size(1259, 664);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Resultados);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.dtgConsultas);
@@ -315,22 +335,18 @@ namespace CapacitacionWS
             this.Controls.Add(this.dtgTipoDocumental);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dtgAplicaciones);
-            this.Controls.Add(this.btnLogout);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.Label1);
-            this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.txtUser);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "    ";
+            this.Text = "Exportador de documentos ePower";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgAplicaciones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgTipoDocumental)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgConsultas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgResultados)).EndInit();
             this.Resultados.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -362,13 +378,14 @@ namespace CapacitacionWS
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreConsulta;
         private System.Windows.Forms.DataGridViewTextBoxColumn DescConsulta;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.DataGridView dtgResultados;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button btnAtras;
-        private System.Windows.Forms.Button btnSiguiente;
+        private DataGridView dtgResultados;
+        private Button button6;
+        private Button btnAtras;
+        private Button button4;
+        private Button btnSiguiente;
+        private Button button5;
         private GroupBox Resultados;
+        private GroupBox groupBox1;
     }
 }
 
