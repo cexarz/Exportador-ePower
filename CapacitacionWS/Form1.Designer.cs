@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace CapacitacionWS.Forms
+namespace CapacitacionWS
 {
-    partial class MainForm
+    partial class Form1
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -25,10 +25,9 @@ namespace CapacitacionWS.Forms
 
         #region Código generado por el Diseñador de Windows Forms
 
-
+    
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.txtUser = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
@@ -57,51 +56,65 @@ namespace CapacitacionWS.Forms
             this.btnAtras = new System.Windows.Forms.Button();
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.Resultados = new System.Windows.Forms.GroupBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgAplicaciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgTipoDocumental)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgConsultas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgResultados)).BeginInit();
             this.Resultados.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtUser
             // 
-            resources.ApplyResources(this.txtUser, "txtUser");
+            this.txtUser.Location = new System.Drawing.Point(53, 12);
             this.txtUser.Name = "txtUser";
+            this.txtUser.Size = new System.Drawing.Size(100, 20);
+            this.txtUser.TabIndex = 0;
             // 
             // txtPassword
             // 
-            resources.ApplyResources(this.txtPassword, "txtPassword");
+            this.txtPassword.Location = new System.Drawing.Point(250, 12);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(100, 20);
+            this.txtPassword.TabIndex = 1;
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // btnLogin
             // 
-            resources.ApplyResources(this.btnLogin, "btnLogin");
+            this.btnLogin.Location = new System.Drawing.Point(53, 38);
             this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(75, 23);
+            this.btnLogin.TabIndex = 2;
+            this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.button1_Click);
             // 
             // Label1
             // 
-            resources.ApplyResources(this.Label1, "Label1");
-            this.Label1.ForeColor = System.Drawing.Color.Black;
+            this.Label1.AutoSize = true;
+            this.Label1.Location = new System.Drawing.Point(4, 15);
             this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(43, 13);
+            this.Label1.TabIndex = 3;
+            this.Label1.Text = "Usuario";
             this.Label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(177, 15);
             this.label2.Name = "label2";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.label2.Size = new System.Drawing.Size(61, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Contraseña";
             // 
             // btnLogout
             // 
-            resources.ApplyResources(this.btnLogout, "btnLogout");
+            this.btnLogout.Location = new System.Drawing.Point(250, 38);
             this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(75, 23);
+            this.btnLogout.TabIndex = 5;
+            this.btnLogout.Text = "Logout";
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
@@ -112,28 +125,33 @@ namespace CapacitacionWS.Forms
             this.Identificador,
             this.Nombre,
             this.Descripcion});
-            resources.ApplyResources(this.dtgAplicaciones, "dtgAplicaciones");
+            this.dtgAplicaciones.Location = new System.Drawing.Point(7, 82);
             this.dtgAplicaciones.Name = "dtgAplicaciones";
+            this.dtgAplicaciones.Size = new System.Drawing.Size(343, 115);
+            this.dtgAplicaciones.TabIndex = 6;
             // 
             // Identificador
             // 
-            resources.ApplyResources(this.Identificador, "Identificador");
+            this.Identificador.HeaderText = "Identificador";
             this.Identificador.Name = "Identificador";
             // 
             // Nombre
             // 
-            resources.ApplyResources(this.Nombre, "Nombre");
+            this.Nombre.HeaderText = "Nombre";
             this.Nombre.Name = "Nombre";
             // 
             // Descripcion
             // 
-            resources.ApplyResources(this.Descripcion, "Descripcion");
+            this.Descripcion.HeaderText = "Descripcion";
             this.Descripcion.Name = "Descripcion";
             // 
             // button1
             // 
-            resources.ApplyResources(this.button1, "button1");
+            this.button1.Location = new System.Drawing.Point(356, 140);
             this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(112, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Listar Aplicaciones";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
@@ -144,28 +162,33 @@ namespace CapacitacionWS.Forms
             this.IdTipoDocumental,
             this.NombreTipoDocumental,
             this.DescTipoDocumental});
-            resources.ApplyResources(this.dtgTipoDocumental, "dtgTipoDocumental");
+            this.dtgTipoDocumental.Location = new System.Drawing.Point(7, 221);
             this.dtgTipoDocumental.Name = "dtgTipoDocumental";
+            this.dtgTipoDocumental.Size = new System.Drawing.Size(343, 162);
+            this.dtgTipoDocumental.TabIndex = 8;
             // 
             // IdTipoDocumental
             // 
-            resources.ApplyResources(this.IdTipoDocumental, "IdTipoDocumental");
+            this.IdTipoDocumental.HeaderText = "IdTipoDocumental";
             this.IdTipoDocumental.Name = "IdTipoDocumental";
             // 
             // NombreTipoDocumental
             // 
-            resources.ApplyResources(this.NombreTipoDocumental, "NombreTipoDocumental");
+            this.NombreTipoDocumental.HeaderText = "NombreTipoDocumental";
             this.NombreTipoDocumental.Name = "NombreTipoDocumental";
             // 
             // DescTipoDocumental
             // 
-            resources.ApplyResources(this.DescTipoDocumental, "DescTipoDocumental");
+            this.DescTipoDocumental.HeaderText = "DescTipoDocumental";
             this.DescTipoDocumental.Name = "DescTipoDocumental";
             // 
             // button2
             // 
-            resources.ApplyResources(this.button2, "button2");
+            this.button2.Location = new System.Drawing.Point(356, 269);
             this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(144, 23);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Listar Tipos Documentales";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -176,70 +199,92 @@ namespace CapacitacionWS.Forms
             this.IdConsulta,
             this.NombreConsulta,
             this.DescConsulta});
-            resources.ApplyResources(this.dtgConsultas, "dtgConsultas");
+            this.dtgConsultas.Location = new System.Drawing.Point(7, 401);
             this.dtgConsultas.Name = "dtgConsultas";
+            this.dtgConsultas.Size = new System.Drawing.Size(343, 168);
+            this.dtgConsultas.TabIndex = 10;
             // 
             // IdConsulta
             // 
-            resources.ApplyResources(this.IdConsulta, "IdConsulta");
+            this.IdConsulta.HeaderText = "IdConsulta";
             this.IdConsulta.Name = "IdConsulta";
             // 
             // NombreConsulta
             // 
-            resources.ApplyResources(this.NombreConsulta, "NombreConsulta");
+            this.NombreConsulta.HeaderText = "NombreConsulta";
             this.NombreConsulta.Name = "NombreConsulta";
             // 
             // DescConsulta
             // 
-            resources.ApplyResources(this.DescConsulta, "DescConsulta");
+            this.DescConsulta.HeaderText = "DescConsulta";
             this.DescConsulta.Name = "DescConsulta";
             // 
             // button3
             // 
-            resources.ApplyResources(this.button3, "button3");
+            this.button3.Location = new System.Drawing.Point(356, 481);
             this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(95, 23);
+            this.button3.TabIndex = 11;
+            this.button3.Text = "Listar Consultas";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
-            resources.ApplyResources(this.button4, "button4");
+            this.button4.Location = new System.Drawing.Point(574, 34);
             this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(99, 23);
+            this.button4.TabIndex = 12;
+            this.button4.Text = "Ejecutar consulta";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // dtgResultados
             // 
             this.dtgResultados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            resources.ApplyResources(this.dtgResultados, "dtgResultados");
+            this.dtgResultados.Location = new System.Drawing.Point(37, 33);
             this.dtgResultados.Name = "dtgResultados";
+            this.dtgResultados.Size = new System.Drawing.Size(531, 397);
+            this.dtgResultados.TabIndex = 13;
             this.dtgResultados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgResultados_CellContentClick);
             // 
             // button5
             // 
-            resources.ApplyResources(this.button5, "button5");
+            this.button5.Location = new System.Drawing.Point(574, 63);
             this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(99, 23);
+            this.button5.TabIndex = 14;
+            this.button5.Text = "Extraer Imagen";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
-            resources.ApplyResources(this.button6, "button6");
+            this.button6.Location = new System.Drawing.Point(574, 92);
             this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(99, 23);
+            this.button6.TabIndex = 15;
+            this.button6.Text = "Obtener Url Img";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // btnAtras
             // 
-            resources.ApplyResources(this.btnAtras, "btnAtras");
+            this.btnAtras.Location = new System.Drawing.Point(37, 446);
             this.btnAtras.Name = "btnAtras";
+            this.btnAtras.Size = new System.Drawing.Size(75, 23);
+            this.btnAtras.TabIndex = 16;
+            this.btnAtras.Text = "Atrás";
             this.btnAtras.UseVisualStyleBackColor = true;
             this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
             // 
             // btnSiguiente
             // 
-            resources.ApplyResources(this.btnSiguiente, "btnSiguiente");
+            this.btnSiguiente.Location = new System.Drawing.Point(493, 446);
             this.btnSiguiente.Name = "btnSiguiente";
+            this.btnSiguiente.Size = new System.Drawing.Size(75, 23);
+            this.btnSiguiente.TabIndex = 17;
+            this.btnSiguiente.Text = "Siguiente";
             this.btnSiguiente.UseVisualStyleBackColor = true;
             this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
             // 
@@ -251,28 +296,18 @@ namespace CapacitacionWS.Forms
             this.Resultados.Controls.Add(this.btnAtras);
             this.Resultados.Controls.Add(this.button6);
             this.Resultados.Controls.Add(this.dtgResultados);
-            resources.ApplyResources(this.Resultados, "Resultados");
+            this.Resultados.Location = new System.Drawing.Point(585, 12);
             this.Resultados.Name = "Resultados";
+            this.Resultados.Size = new System.Drawing.Size(673, 489);
+            this.Resultados.TabIndex = 18;
             this.Resultados.TabStop = false;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.txtPassword);
-            this.groupBox1.Controls.Add(this.txtUser);
-            this.groupBox1.Controls.Add(this.btnLogin);
-            this.groupBox1.Controls.Add(this.Label1);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.btnLogout);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
+            this.Resultados.Text = "Resultados";
             // 
             // Form1
             // 
-            resources.ApplyResources(this, "$this");
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(1259, 572);
             this.Controls.Add(this.Resultados);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.dtgConsultas);
@@ -280,16 +315,22 @@ namespace CapacitacionWS.Forms
             this.Controls.Add(this.dtgTipoDocumental);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dtgAplicaciones);
+            this.Controls.Add(this.btnLogout);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.Label1);
+            this.Controls.Add(this.btnLogin);
+            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.txtUser);
             this.Name = "Form1";
+            this.Text = "    ";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgAplicaciones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgTipoDocumental)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgConsultas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgResultados)).EndInit();
             this.Resultados.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -328,7 +369,6 @@ namespace CapacitacionWS.Forms
         private System.Windows.Forms.Button btnAtras;
         private System.Windows.Forms.Button btnSiguiente;
         private GroupBox Resultados;
-        private GroupBox groupBox1;
     }
 }
 

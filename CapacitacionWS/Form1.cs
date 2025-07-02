@@ -6,62 +6,14 @@ using System.Linq;
 using System.Windows.Forms;
 using System.ServiceModel;
 using System.Web.Services.Protocols;
-using System.Drawing;
-using CapacitacionWS.Services;
 
 
-public partial class MainForm : Form
-{
-    private readonly AuthService _authService;
-    private readonly QueryService _queryService;
-    private readonly DocumentService _docService;
 
-    // Variables de estado
-    private int _currentPage = 0;
-    private const int PageSize = 500;
-    private List<CapacitacionWS.ePower.DocInst> _allDocs = new List<CapacitacionWS.ePower.DocInst>();
-
-    public MainForm()
-    {
-        try
-        {
-            InitializeComponent();
-
-            // Validación fuerte de controles
-            var controlsToCheck = new List<Control> { dtgAplicaciones, btnLogout };
-            foreach (var control in controlsToCheck)
-            {
-                if (control == null)
-                    throw new NullReferenceException($"Control {control.Name} no encontrado");
-            }
-
-            // Inicialización segura de servicios
-            _authService = new AuthService();
-            _queryService = new QueryService(_authService.CurrentConnectionId);
-            _docService = new DocumentService();
-
-            ConfigureInitialState();
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show($"Error inicializando formulario: {ex.Message}");
-            this.Close();
-        }
-    }
-
-    private void ConfigureInitialState()
-    {
-        // Deshabilitar controles hasta login
-        dtgAplicaciones.Enabled = false;
-        btnLogout.Enabled = false;
-        // ... otros controles
-    }
-}
 
 
 namespace CapacitacionWS
 {
-    public partial class MainForm : Form
+    public partial class Form1 : Form
     {
         ePower.ewsmSoapClient conexion = null;// instancia el entry point.
         int idconection = 0;//id de conexion de ePower.
@@ -71,7 +23,7 @@ namespace CapacitacionWS
         int DocumentoId = 0;//id del documento a procesar
         int idconeccionSecurity = 0; //id de conexión con el eSecurity
 
-        public MainForm()
+        public Form1()
         {
             InitializeComponent();
 
@@ -83,46 +35,20 @@ namespace CapacitacionWS
 
         }
 
-        private readonly AuthService _authService;
-
-        public MainForm()
-        {
-            InitializeComponent();
-            _authService = new AuthService(); // Inicializar servicio
-
-            // Configurar estado inicial
-            UpdateUIAfterAuthChange();
-        }
-
-        private QueryService _queryService;
-
-        private void button1_Click_1(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                _queryService = new QueryService(_authService.CurrentConnectionId);
-                var apps = _queryService.GetApplications();
-
-                dtgAplicaciones.Rows.Clear();
-                foreach (var app in apps)
-                {
-                    dtgAplicaciones.Rows.Add(app.Id, app.Name, app.Description);
-                }
+                //Método para realizar conexión en ePower, retorna id conexión que es un entero.
+                idconection = conexion.doLogin(txtUser.Text, txtPassword.Text, "eAccess");
+                MessageBox.Show("Id Asignado " + idconection, "Mensaje",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error",
+                MessageBox.Show("Imposible realizar loguin " + ex.ToString(), "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void UpdateUIAfterAuthChange()
-        {
-            // Actualizar todos los controles que dependan del estado de autenticación
-            btnLogout.Enabled = _authService.IsAuthenticated;
-            button1.Enabled = !_authService.IsAuthenticated;
-            txtUser.Enabled = !_authService.IsAuthenticated;
-            txtPassword.Enabled = !_authService.IsAuthenticated;
         }
 
         private void inicializaconexion()
@@ -142,25 +68,78 @@ namespace CapacitacionWS
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            var (success, message) = _authService.Logout();
-
-            if (success)
+            try
             {
-                // Limpiar la interfaz
-                dtgAplicaciones.Rows.Clear();
-                dtgTipoDocumental.Rows.Clear();
-                dtgConsultas.Rows.Clear();
-                dtgResultados.Rows.Clear();
+                if (idconection > 0)
+                {
+                    // Método para realizar la desconexión, retorna boolean
+                    if (conexion.doLogout(idconection))
+                    {
+                        // Limpiar todos los DataGridView
+                        dtgAplicaciones.Rows.Clear();
+                        dtgTipoDocumental.Rows.Clear();
+                        dtgConsultas.Rows.Clear();
+                        dtgResultados.Rows.Clear();
 
-                txtUser.Text = "";
-                txtPassword.Text = "";
+                        // Reiniciar todas las variables de sesión
+                        idconection = 0;
+                        appid = 0;
+                        tipoDocumento = 0;
+                        consulta = 0;
+                        DocumentoId = 0;
+
+                        // Limpiar otros controles (opcional)
+                        txtUser.Text = "";
+                        txtPassword.Text = "";
+                        
+
+                        MessageBox.Show("Desconexión Exitosa", "Mensaje",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo realizar la desconexión", "Mensaje",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró una conexión activa", "Mensaje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Imposible realizar logout: " + ex.ToString(), "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-            MessageBox.Show(message, success ? "Información" : "Error",
-                MessageBoxButtons.OK,
-                success ? MessageBoxIcon.Information : MessageBoxIcon.Error);
 
-            UpdateUIAfterAuthChange();
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            ePower.App[] Aplic = null;//objeto que contiene lista de aplicaciones de ePower
+            try
+            {
+                //Método que retorna la lista de aplicaciones en ePower, retorna objeto de tipo App[]
+                Aplic = conexion.getAppList(idconection);
+                //funcionalidad para limpiar el datagrid y añadir un row por cada registro encontrado
+                dtgAplicaciones.Rows.Clear();
+                for (int i = 0; i < Aplic.Length; i++)
+                {
+                    DataGridViewRow dt = new DataGridViewRow();
+                    dt.CreateCells(dtgAplicaciones);
+                    dt.Cells[0].Value = Aplic[i].AppId;
+                    dt.Cells[1].Value = Aplic[i].AppName;
+                    dt.Cells[2].Value = Aplic[i].AppDsc;
+                    dtgAplicaciones.Rows.Insert(i, dt);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Imposible obtener la lista de aplicaciones " + ex.ToString(), "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -767,12 +746,88 @@ namespace CapacitacionWS
 
         private void Form1_Load(object sender, EventArgs e)
         {
-             
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
 
         }
+
+
+        // private void button8_Click(object sender, EventArgs e)
+        // {
+        //     try
+        //     {
+        //         ePower.Column[] Columnas = null;
+        //         ePower.DocInst[] Docs = null;
+        //         ePower.Field[] campos = null;
+        //         ePower.QueryInst Results = null;
+        //         //  a. Crear el conditionTree para obtener el docId con dicho numero de operacion
+        //         string xml = createEqual(appid.ToString(), tipoDocumento.ToString(), "1315", "1");//cambiar el valor porque el que se este utilizando 
+        //         gsi.tree.Builder builder = new gsi.tree.Builder();
+        //         gsi.tree.eTree condTree = builder.createTree(xml);
+        //         ePower.eTree tree = (ePower.eTree)convert(condTree);
+        //         //  b. Ejecutar la consulta
+        //         consulta = int.Parse(dtgConsultas.CurrentCell.Value.ToString());
+        //         //toma la consulta default de epower como base.
+        //         Results = conexion.doExecuteQuery(idconection, appid, tipoDocumento, consulta, -1, null, tree, null);
+        //         Columnas = Results.Column;
+        //         Docs = Results.DocInst;
+        //         dtgResultados.ColumnCount = (Columnas.Count() + 1);
+        //         dtgResultados.ColumnHeadersVisible = true;
+
+
+
+        //         dtgResultados.Columns[0].Name = "DocId";
+        //         for (int i = 0; i < Columnas.Count(); i++)
+        //         {
+        //             dtgResultados.Columns[i + 1].Name = Columnas[i].Name;
+        //         }
+        //         dtgResultados.Rows.Clear();
+        //         for (int i = 0; i < Docs.Length; i++)
+        //         {
+        //             campos = Docs[i].Field;
+        //             DataGridViewRow dt = new DataGridViewRow();
+        //             dt.CreateCells(dtgResultados);
+        //             dt.Cells[0].Value = Docs[i].DocId;
+        //             for (int j = 0; j < Columnas.Count(); j++)
+        //             {
+        //                 dt.Cells[j + 1].Value = campos[j].Value;
+        //             }
+        //             dtgResultados.Rows.Insert(i, dt);
+        //         }
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         MessageBox.Show("Imposible ejecutar la consulta  " + ex.ToString(), "Error",
+        //             MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+
+        //     }
+        // }
+
+        //private string createEqual(string app, string docType, string field, string valuee)
+        // {
+        //     string xml = "<Equal><Fields>" + app + "." + docType + "." + field + "</Fields>";
+        //     xml += "<Values>" + valuee + "</Values></Equal>";
+        //     return xml;
+        // }
+
+        // private ePower.eTree convert(gsi.tree.eTree t)
+        // {
+        //     ePower.eTree tree = new ePower.eTree();
+        //     tree.data = t.getData();
+        //     tree.vt = t.getVT();
+        //     tree.ek = t.getEK();
+        //     tree.l = t.getL();
+        //     if (t.getChild(1) != null)
+        //         tree.child1 = convert(t.getChild(1));
+        //     if (t.getChild(2) != null)
+        //         tree.child2 = convert(t.getChild(2));
+        //     if (t.getChild(3) != null)
+        //         tree.child3 = convert(t.getChild(3));
+        //     if (t.getChild(4) != null)
+        //         tree.child4 = convert(t.getChild(4));
+        //     return tree;
+        // }
+
+
     }
 }
