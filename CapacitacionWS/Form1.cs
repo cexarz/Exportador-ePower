@@ -46,7 +46,7 @@ namespace CapacitacionWS
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Imposible realizar loguin " + ex.ToString(), "Error",
+                MessageBox.Show("Imposible realizar login " + ex.ToString(), "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -55,17 +55,39 @@ namespace CapacitacionWS
         {
             try
             {
-                //instancia el entry point para comunicación con el WS de epower 
-                conexion = new ePower.ewsmSoapClient();
+                // 1. Forzar los protocolos de seguridad modernos (TLS 1.2 / TLS 1.3)
+                System.Net.ServicePointManager.SecurityProtocol =
+                    System.Net.SecurityProtocolType.Tls12 | (System.Net.SecurityProtocolType)12288;
+
+                // 2. Configurar el Binding de WCF con seguridad por Transporte (HTTPS)
+                BasicHttpBinding binding = new BasicHttpBinding();
+                binding.Security.Mode = BasicHttpSecurityMode.Transport; // Usa SSL/TLS obligatoriamente
+
+                // esto era el appconfig
+                binding.MaxReceivedMessageSize = 10485760;
+                binding.MaxBufferSize = 10485760;
+                binding.MaxBufferPoolSize = 10485760;
+                binding.SendTimeout = new TimeSpan(0, 5, 0);    // 5 minutos
+                binding.ReceiveTimeout = new TimeSpan(0, 5, 0); // 5 minutos
+
+                binding.ReaderQuotas.MaxDepth = 32;
+                binding.ReaderQuotas.MaxStringContentLength = 10485760;
+                binding.ReaderQuotas.MaxArrayLength = 10485760;
+                binding.ReaderQuotas.MaxBytesPerRead = 10485760;
+                binding.ReaderQuotas.MaxNameTableCharCount = 10485760;
+
+                // 3. Definir la nueva URL segura del endpoint
+                EndpointAddress endpoint = new EndpointAddress("https://epowerprival.e-gsi.net/ePowerWS/ewsm.asmx");
+
+                // 4. Instanciar el cliente inyectándole el binding y el endpoint seguros
+                conexion = new ePower.ewsmSoapClient(binding, endpoint);
             }
             catch (Exception e)
             {
                 MessageBox.Show("Imposible establecer la conexion" + e.ToString(), "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
             }
         }
-
         private void btnLogout_Click(object sender, EventArgs e)
         {
             try
